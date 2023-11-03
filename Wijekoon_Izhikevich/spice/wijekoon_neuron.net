@@ -1,0 +1,31 @@
+* Z:\home\raiyan\Neuromorphic-Computing\Wijekoon_Izhikevich\spice\wijekoon_neuron.asc
+M1 0 post_synaptic_input N002 0 NMOS l=180n w=2.3u
+M2 N002 N002 VDD VDD PMOS l=180n w=2.3u
+M3 post_synaptic_input N002 VDD VDD PMOS l=180n w=1u
+C1 post_synaptic_input 0 35f
+M4 0 N003 post_synaptic_input 0 NMOS l=3.96u w=1.3u
+M7 N003 N002 VDD VDD PMOS l=2.52u w=1.3u
+M6 0 N003 N003 0 NMOS l=3.24u w=1.3u
+C2 N003 0 550f
+M8 N003 spike_out d VDD PMOS l=180n w=1.3u
+M5 c N001 post_synaptic_input 0 NMOS l=180n w=1u
+M12 spike_out post_synaptic_input N004 0 NMOS l=180n w=1.3u
+M9 VDD spike_out N001 VDD PMOS l=684n w=1u
+M10 spike_out spike_out VDD VDD PMOS l=234n w=1.8u
+M11 N004 Vth N001 0 NMOS l=774n w=1u
+M13 N004 N004 0 0 NMOS l=540n w=2.3u
+M14 0 Vbias N004 N005 NMOS l=540n w=2.3u
+V1 VDD 0 0.9
+V2 c 0 0.5
+V4 Vth 0 0.4
+V5 Vbias 0 0.3
+V6 d 0 0.07
+I1 post_synaptic_input 0 PULSE(0 0.1uA 100ns 0.1ns 0.1ns 10ns 100ns 0A)
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\users\raiyan\My Documents\LTspiceXVII\lib\cmp\standard.mos
+.include p18_cmos_models_tt.inc
+.tran 0.1n 2u
+.op
+.backanno
+.end
